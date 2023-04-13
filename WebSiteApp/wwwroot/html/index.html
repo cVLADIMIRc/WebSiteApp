@@ -1,0 +1,57 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WebSiteApp</title>
+    <style>
+        .center
+        {
+            margin-left: 50%;
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <h2>Social Web</h2>
+    </nav>
+    <div class="center">
+
+        <h1>Регистрация</h1>
+        <form>
+            <p>Логин: <br/><input id="userLoginReg" type="text"></p>
+            <p>Пароль: <br/><input id="userPasswordReg" type="text"></p>
+        </form>
+        <button id="buttonReg">Sing up</button>
+
+        <h1>Войти</h1>
+        <form>
+            <p>Логин: <br/><input id="userLoginIn" type="text"></p>
+            <p>Пароль: <br/><input id="userPasswordIn" type="text"></p>
+        </form>
+        <button id="buttonIn">Sign in</button>
+
+    </div>
+
+
+
+    <script>
+        document.getElementById("buttonReg").addEventListener("click",send);
+        document.getElementById("buttonIn").addEventListener("click",send);
+
+        async function send()
+        {
+            const response = await fetch("/Auth", 
+            {
+                method: "POST",
+                headers: {"Accept": "application/json", "Content-Type": "application/json"},
+                body: JSON.stringify({
+                    login: document.getElementById("userLoginReg").value,
+                    password: document.getElementById("userPasswordReg").value
+                })
+            });
+        }
+    </script>
+</body>
+</html>
